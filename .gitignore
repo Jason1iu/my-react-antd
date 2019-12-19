@@ -1,0 +1,8 @@
+.vscode
+/jiagrid/
+/mock/
+/node_modules/
+/src/common/
+/dist/
+images.d.ts
+package-lock.json

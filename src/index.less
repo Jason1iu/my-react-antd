@@ -1,0 +1,222 @@
+// @import "~antd/lib/style/themes/default.less";
+
+#root {
+  height:100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    overflow: hidden
+  }
+.mainHeader {
+    padding: 0 0 0 0;
+    display: flex;
+    flex-direction: row;
+    line-height: 42px;
+    background: #ffffff;
+}
+@darkMenuColor:#015673;
+@lightMenuColor:#f5f5f5;
+.ant-menu-dark .ant-menu-inline.ant-menu-sub
+{
+  box-shadow: none;
+  background-color: @lightMenuColor;
+}
+.mainSubMenu
+{
+    background-color: @lightMenuColor;
+    >.ant-menu-sub
+    {
+      background-color: @lightMenuColor;
+    }
+}
+.mainSubMenuPopup
+{
+  background-color: @lightMenuColor !important;
+}
+.minaSubMenuPopup2
+{
+  background-color: @lightMenuColor !important;
+  :hover
+  {
+    background-color: #1890ff !important;
+  }
+}
+.ant-menu-dark, .ant-menu-dark .ant-menu-sub
+{
+  background-color: @darkMenuColor !important;
+}
+.ant-layout-sider-children{
+    overflow: auto;
+}
+
+.ant-modal-body {
+  padding: 8px 24px!important;
+}
+
+.jiaFlex {
+  flex:1;
+}
+
+div .jiasoft-confirm-dialog .ant-popover-buttons>button:first-child {
+  float: right;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.toolbar {
+  background-color: #ffffff;
+  padding: 0 10px;
+  margin-bottom: 0px;
+  display: flex;
+  white-space: nowrap;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #e8e8e8;
+}
+/*默认按照Row去填充*/
+.flex,
+.spacer,
+.jiaFlex {
+  flex: 1;
+}
+div>button {
+  margin-right: 10px;
+}
+div>span>button {
+  margin-right: 10px;
+}
+
+.footbar {
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.toolbarNoBorder {
+  background-color: #ffffff;
+  padding: 0 10px;
+  margin-bottom: 0px;
+  display: flex;
+  white-space: nowrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bottomBorder {
+  border-bottom: 1px solid #e8e8e8;
+}
+.leftBorder {
+  border-left: 1px solid #e8e8e8;
+}
+
+.topBorder {
+  border-top: 1px solid #e8e8e8;
+}
+.rightBorder {
+  border-right: 1px solid #e8e8e8;
+}
+.allBorder {
+  border: 1px solid #e8e8e8;
+}
+.paperDiv {
+  display: table;
+  width: 1100px;
+  background: white;
+  padding: 10px 10px 10px 10px;
+  margin-top: 5px;
+}
+
+.link {
+  color: #1890ff;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+      color: #0679e4
+  }
+}
+
+.linkRed {
+  color: #ff1818;
+  text-decoration: none;
+  cursor: pointer;
+}
+.noBorderTable .ant-table-small
+{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+div.flexColumn {
+  & .ant-table-wrapper, & .ant-spin-nested-loading, & .ant-spin-container, 
+  & .ant-table, & .ant-table-content, & .ant-table-scroll {
+    flex:1 1 0%;
+    flex-basis:0%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height:100%;
+  }
+  & .ant-tabs-bar {
+    margin: 0 0 4px 0;
+  }
+
+  & .ant-list > .ant-spin-nested-loading {
+    display: block;
+  }
+
+  & .ant-table-body{
+    flex:1 1 0%;
+    flex-basis:0%;
+    overflow: auto;
+  }
+
+  & .ant-table-pagination {
+    text-align: right;
+    margin: 8px 0px;
+  }
+
+  & .ant-table-small>.ant-table-content .ant-table-row:last-child td {
+    border-bottom: 1px solid #e8e8e8!important;
+  }
+
+  /*
+  & .ant-table-wrapper {
+    box-shadow: 0 1px 4px rgba(0, 21, 41, .08) ;
+  }*/
+
+  & .ant-table-thead th {
+    text-align: center!important;
+  }
+
+  & .ant-table-body table {
+    table-layout: fixed;
+    padding: 0px!important;
+  }
+
+  & .ant-tabs-content {
+    height: calc(-44px + 100%);
+  }
+
+  & .ant-table-header{
+    overflow-y: hidden!important;
+  }
+}
