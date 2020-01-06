@@ -44,18 +44,18 @@ module.exports = merge(common, {
         inline: true,
         hot: true,
         proxy: {
-            /*'/api': {
+            '/api': {
                 target: 'http://localhost:3000/', // 使用 json-server作为mock-server
                 pathRewrite: { '^/api': '/' },
                 changeOrigin: true,
-            } */
-            '/api': {
+            }
+            /*'/api': {
                 target: 'http://localhost:8080',
                 secure: false,
                 changeOrigin: true,
                 //pathRewrite: { '^/api': '/dev/api' },
                 auth: 'admin:ApiPassword'
-            },
+            }, */
         },
         headers: {
             'Access-Control-Allow-Origin': '*',

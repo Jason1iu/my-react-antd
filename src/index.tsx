@@ -1,5 +1,4 @@
 import './index.less';
-import '../public/resources/iconfont/iconfont.css';
 import 'whatwg-fetch';
 
 import { ConfigProvider } from 'antd';
@@ -10,12 +9,13 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { getContextPath, styledTheme } from './global';
+import { styledTheme } from './global';
 import MainApp from './home';
 import { store } from './store/store';
+import { AppUtils } from './utils/AppUtils';
 import request from './utils/request';
 
-const webpackPublicPath = getContextPath();
+const webpackPublicPath = AppUtils.getContextPath();
 const basename = webpackPublicPath;
 const supportsHistory = 'pushState' in window.history;
 
@@ -41,6 +41,6 @@ const App = () => {
 ReactDOM.render(<App />, document.getElementById('root'));
 
 const keepAlive = () => {
-    request(getContextPath() + `/api/blank`, { method: 'GET' });
+    request(AppUtils.getContextPath() + `/api/blank`, { method: 'GET' });
 }
 window.setInterval(keepAlive, 1000 * 60 * 5);

@@ -1,7 +1,5 @@
-import {
-  message
-} from 'antd';
-import { getContextPath } from '../global';
+import { message } from 'antd';
+import { AppUtils } from './AppUtils';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据',
@@ -145,7 +143,7 @@ export function graphql(query, variables) {
     headers[csrfHeaderName.content] = csrfToken.content;
     newOptions.headers = { ...headers };
   }
-  const url = getContextPath() + "/graphql"
+  const url = AppUtils.getContextPath() + "/graphql"
   return fetch(url, newOptions)
     .then(checkStatus)
     .then((response) => {

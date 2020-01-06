@@ -22,11 +22,7 @@ module.exports = merge(common, {
             inject: true,
             favicon: false,
             hash: true,
-            header: `
-            <link href="/jiagrid/css/jiagrid.css" rel="stylesheet">
-            <link href="/jiagrid/css/flatpickr.min.css" rel="stylesheet">
-            <script type="text/javascript" src="/jiagrid/jiagrid.js"></script>
-            `,
+            header: ``,
             metas: [
                 '<meta name="csrfHeaderName" th:content="${_csrf.headerName}">',
                 '<meta name="csrfToken" th:content="${_csrf.token}">',

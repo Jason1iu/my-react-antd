@@ -1,26 +1,30 @@
-export const oneItemLayout: any = {
+export const FormItemLayout_4_20: any = {
     labelCol: { span: 4 },
     wrapperCol: { span: 20 },
     style: { marginBottom: '6px' },
 };
-export const oneItemLayout2: any = {
-    labelCol: { span: 2 },
-    wrapperCol: { span: 22 },
-    style: { marginBottom: '6px' },
-};
-export const two1ItemLayout: any = {
+export const FormItemLayout_8_16: any = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
     style: { marginBottom: '6px' },
 };
-
-export const two2ItemLayout: any = two1ItemLayout;
-export const three1ItemLayout: any = two1ItemLayout;
-export const three2ItemLayout: any = two1ItemLayout;
-export const three3ItemLayout: any = two1ItemLayout;
-
-export const oneFormItemLayout: any = {
+export const FormItemLayout_16_8: any = {
+    labelCol: { span: 16 },
+    wrapperCol: { span: 8 },
+    style: { marginBottom: '6px' },
+};
+export const FormItemLayout_3_21: any = {
+    labelCol: { span: 3 },
+    wrapperCol: { span: 21 },
+    style: { marginBottom: '6px' },
+};
+export const FormItemLayout_6_18: any = {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 },
+    style: { marginBottom: '6px' },
+};
+export const FormItemLayout_12_12: any = {
+    labelCol: { span: 12 },
+    wrapperCol: { span: 12 },
     style: { marginBottom: '6px' },
 };

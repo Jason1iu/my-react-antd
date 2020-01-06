@@ -1,10 +1,10 @@
 import { call, put } from 'redux-saga/effects';
 
-import { getContextPath } from '../global';
 import {
     Action, actionCreator, failureActionCreator, successActionCreator
 } from '../store/actionUtils';
 import { StateKeys } from '../store/interface';
+import { AppUtils } from '../utils/AppUtils';
 import request from '../utils/request';
 import { HomeReduxState, LoginUser } from './interface';
 
@@ -19,7 +19,7 @@ export const fetchLoginUser = actionCreator<HomeReduxState>({
     },
     saga: function* (action: Action<HomeReduxState>) {
         try {
-            const url = `${getContextPath()}/api/loginuser`;
+            const url = `${AppUtils.getContextPath()}/api/loginuser`;
             const o: any = yield call(request, url, { method: 'GET' });
             if (o.currentUser) {
                 const a = successActionCreator(action)(o);
