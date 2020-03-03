@@ -8,7 +8,7 @@ import { ReduxStoreState } from '../store/interface';
 class Header extends React.Component<any, any>{
     render() {
         return (
-            <div>
+            <div className="marginLeftAndRight">
                 <AppTitleSpan>React+Antd各项功能管理界面</AppTitleSpan>
             </div>
         );

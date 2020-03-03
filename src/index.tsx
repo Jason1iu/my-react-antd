@@ -13,7 +13,7 @@ import { styledTheme } from './global';
 import MainApp from './home';
 import { store } from './store/store';
 import { AppUtils } from './utils/AppUtils';
-import request from './utils/request';
+// import request from './utils/request';
 
 const webpackPublicPath = AppUtils.getContextPath();
 const basename = webpackPublicPath;
@@ -40,7 +40,7 @@ const App = () => {
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-const keepAlive = () => {
-    request(AppUtils.getContextPath() + `/api/blank`, { method: 'GET' });
-}
-window.setInterval(keepAlive, 1000 * 60 * 5);
+// const keepAlive = () => {
+//     request(AppUtils.getContextPath() + `/api/blank`, { method: 'GET' });
+// }
+// window.setInterval(keepAlive, 1000 * 60 * 5);

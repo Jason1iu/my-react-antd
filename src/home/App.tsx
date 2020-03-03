@@ -1,16 +1,17 @@
 import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Switch, Route } from 'react-router-dom';
 
 import { AppContent, AppHeader, AppSider } from '../layout';
 import Header from './Header';
 import Sider from './Sider';
+import DataTable from '../edit';
 
 /**
  * 应用程序界面，统一加载用户、代码字典、任务
  * @param props 
  */
-const App: FunctionComponent = (_props: any) => {
+const App: FunctionComponent = () => {
 
     return (
         <>
@@ -21,7 +22,10 @@ const App: FunctionComponent = (_props: any) => {
                 <Sider />
             </AppSider>
             <AppContent className="topBorder leftBorder">
-                AppContent
+                <Switch>
+                    <Route path={`/react/data`} render={() => <DataTable />} />
+                    <Route render={() => <>建设中...</>} />
+                </Switch>
             </AppContent>
         </>
     );

@@ -1,4 +1,5 @@
 import { HomeReduxState } from '../home/interface';
+import { EditReduxState } from '../edit/interface';
 
 /**
  * 所有的stateKey
@@ -6,6 +7,14 @@ import { HomeReduxState } from '../home/interface';
 export enum StateKeys {
     /** home模块 */
     home = "home",
+    /** work模块 */
+    work = "work",
+    /** edit模块 */
+    edit = "edit",
+    /** report模块 */
+    report = "report",
+    /** system模块 */
+    system = "system",
 }
 
 /**
@@ -14,6 +23,7 @@ export enum StateKeys {
 export interface ReduxStoreState {
     /** 初始模块 */
     [StateKeys.home]: HomeReduxState,
+    [StateKeys.edit]: EditReduxState,
 }
 
 /**
