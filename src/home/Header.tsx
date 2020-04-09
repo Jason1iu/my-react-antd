@@ -15,7 +15,7 @@ class Header extends React.Component<any, any>{
     }
 }
 
-export default withRouter(connect((_state: ReduxStoreState) => {
+export default withRouter<any>(connect((_state: ReduxStoreState) => {
     return {
 
     }

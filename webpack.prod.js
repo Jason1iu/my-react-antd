@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
@@ -8,12 +8,14 @@ const TextReplaceWebpackPlugin = require("text-replace-html-webpack-plugin");
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(common, {
     mode: 'production',
     devtool: false,
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        new BundleAnalyzerPlugin(),
+        new CleanWebpackPlugin(['dist', '../server/src/main/resources/static/*.worker.*']),
         new HtmlWebPackPlugin({
             template: "./public/index.prod.html",
             title: 'react+antd前端界面汇总',
@@ -22,7 +24,7 @@ module.exports = merge(common, {
             inject: true,
             favicon: false,
             hash: true,
-            header: ``,
+            // header: ``,
             metas: [
                 '<meta name="csrfHeaderName" th:content="${_csrf.headerName}">',
                 '<meta name="csrfToken" th:content="${_csrf.token}">',
@@ -41,11 +43,6 @@ module.exports = merge(common, {
                 },
             ]
         }),
-        new CompressionPlugin({
-            algorithm: 'gzip',
-            test: /\.bundle.js|\.bundle.css/,
-            filename: '[path]'
-        }),
         new FileManagerPlugin({
             onEnd: [{
                 copy: [
@@ -62,6 +59,8 @@ module.exports = merge(common, {
             {
                 delete: [
                     path.join(__dirname, '../server/src/main/resources/static/index.html'),
+                    path.join(__dirname, '../server/src/main/resources/static/iconfont'),
+                    path.join(__dirname, '../server/src/main/resources/static/js/*.LICENSE.txt'),
                 ],
             },
             ],
@@ -69,7 +68,7 @@ module.exports = merge(common, {
     ],
     optimization: {
         minimizer: [
-            new UglifyJsPlugin({
+            new TerserJSPlugin({
                 cache: true,
                 parallel: true,
                 sourceMap: false // set to true if you want JS source maps
@@ -85,25 +84,58 @@ module.exports = merge(common, {
         ],
         splitChunks: {
             chunks: 'all',
-            automaticNameDelimiter: '-', // 文件名的连接符
-            name: true,
+            // automaticNameDelimiter: '-', // 文件名的连接符
+            // name: true,
             cacheGroups: {
                 antd: {
-                    test: /[\\/]node_modules[\\/](antd.*|@ant\\-design)[\\/]/,
-                    name: "antd",
-                    priority: -9,
+                    test: /[\\/]node_modules[\\/]antd[\\/]/,
+                    enforce: true,
+                    name: 'antd',
+                    priority: -10
+                },
+                ant_design: {
+                    test: /[\\/]node_modules[\\/]@ant[\\-]design[\\/]/,
+                    enforce: true,
+                    name: 'ant_design',
+                    priority: -10
+                },
+                rc: {
+                    test: /[\\/]node_modules[\\/]rc[\\-](.+)[\\/]/,
+                    enforce: true,
+                    name: 'rc',
+                    priority: -10
                 },
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
-                    priority: -10,
-                    reuseExistingChunk: true
+                    enforce: true,
+                    priority: -40
                 },
                 common: {
+                    name: 'common',
                     minChunks: 2,
-                    priority: -20,
+                    enforce: true,
+                    priority: -100,
                     reuseExistingChunk: true
                 }
+                // antv: {//使用antv
+                //     test: /[\\/]node_modules[\\/]@antv[\\/]/,
+                //     enforce: true,
+                //     name: 'antv',
+                //     priority: -10
+                // },
+                // react_regl_corejs_moment_d3: {//使用d3
+                //     test: /[\\/]node_modules[\\/]react(.*)|regl|core[\\-]js|moment|d3(.*)[\\/]/,
+                //     enforce: true,
+                //     name: 'react_regl_corejs_moment_d3',
+                //     priority: -10
+                // },
+                // pdfjs: {//使用pdfjs
+                //     test: /[\\/]node_modules[\\/]pdfjs(.*)[\\/]/,
+                //     enforce: true,
+                //     name: 'pdfjs',
+                //     priority: -10
+                // },
             },
         },
     },

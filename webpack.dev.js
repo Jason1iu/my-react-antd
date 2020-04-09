@@ -2,15 +2,11 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'cheap-module-source-map',//inline-source-map
     plugins: [
-        new ForkTsCheckerWebpackPlugin({
-            memoryLimit: 1024
-        }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebPackPlugin({
@@ -39,7 +35,7 @@ module.exports = merge(common, {
             ]
         },
         disableHostCheck: true,
-        port: 8084,
+        port: 8001,
         compress: false,
         inline: true,
         hot: true,

@@ -8,11 +8,8 @@
     <meta name="csrfToken" content="92476fa4-c278-4b57-883d-92055e86a0d6">
     <meta name="contextPath" content="/">
     <title><%= htmlWebpackPlugin.options.title%></title>
-    <!-- <link href="/jiagrid/css/jiagrid.css?<%= webpack.hash %>" rel="stylesheet">
-    <link href="/jiagrid/css/flatpickr.min.css?<%= webpack.hash %>" rel="stylesheet">
-    <script type="text/javascript" src="/jiagrid/jiagrid.js?<%= webpack.hash %>"></script> -->
     <script type="text/javascript">
-        window.contextPath = "";
+        window.contextPath = "/";
     </script>
 </head>
 
@@ -22,8 +19,9 @@
     <div style="display: none">
         <a id="idDetailA" target="_blank"></a>
         <form id="exportexcel" name="exportexcel" method="post" action="/api/exportexcel" target="_blank">
-            <input type="hidden" name="title"/>
-            <input type="hidden" name="data"/>
+            <input type="hidden" name="title" />
+            <input type="hidden" name="data" />
+            <input type="hidden" name="jigouId" value="0" />
         </form>
     </div>
 </body>

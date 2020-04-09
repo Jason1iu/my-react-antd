@@ -2,7 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require('autoprefixer');
 const webpack = require("webpack");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -85,37 +86,24 @@ module.exports = {
                     }
                 ]
             },
-            {
-                test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 10240,
-                            name: 'orgiconfont/[name].[ext]',
-                        }
-                    }
-                ]
-            }
         ]
     },
-    plugins: [        
+    plugins: [
         new webpack.ContextReplacementPlugin(
             /moment[\\\/]locale$/,
             /^\.\/(zh-cn)$/
         ),
-        new CopyWebpackPlugin([
-            {
-                from: path.join(__dirname, 'jiagrid/**'),
-                to: path.join(__dirname, './dist/'),
-            },
-        ]),
         new MiniCssExtractPlugin({
+            ignoreOrder: true,
             filename: "css/[name].bundle.css",
             chunkFilename: "css/[name].bundle.css"
         }),
+        new ForkTsCheckerWebpackPlugin({
+            async: false,
+            memoryLimit: 1024
+        }),
     ],
-    
+
     stats: {
         all: false,
         modules: true,

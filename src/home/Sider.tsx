@@ -8,29 +8,28 @@ import { Link } from 'react-router-dom';
 
 // const { SubMenu } = Menu;
 
-class Sider extends React.Component {
+const Sider: React.FC = () => {
 
-    render() {
-        return (
-            <Menu
-                style={{ width: 256 }}
-                defaultSelectedKeys={['viewEdit']}
-                defaultOpenKeys={['viewEdit']}
-                mode="inline"
-            >
-                <Menu.Item key="viewEdit">
-                    <Link to={`/react/data`}>
-                        <Icon type="schedule" />
-                        <span>查看编辑</span>
-                    </Link>
-                </Menu.Item>
-                <Menu.Item key="report">
-                    <Link to={`/react/report`}>
-                        <Icon type="table" />
-                        <span>统计报表</span>
-                    </Link>
-                </Menu.Item>
-                {/* <SubMenu
+    return (
+        <Menu
+            style={{ width: 256 }}
+            defaultSelectedKeys={['viewEdit']}
+            defaultOpenKeys={['viewEdit']}
+            mode="inline"
+        >
+            <Menu.Item key="viewEdit">
+                <Link to={`/react/data`}>
+                    <Icon type="schedule" />
+                    <span>查看编辑</span>
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="report">
+                <Link to={`/react/report`}>
+                    <Icon type="table" />
+                    <span>统计报表</span>
+                </Link>
+            </Menu.Item>
+            {/* <SubMenu
                     key="sub2"
                     title={
                         <span>
@@ -60,12 +59,11 @@ class Sider extends React.Component {
                     <Menu.Item key="11">Option 11</Menu.Item>
                     <Menu.Item key="12">Option 12</Menu.Item>
                 </SubMenu> */}
-            </Menu>
-        );
-    }
+        </Menu>
+    );
 }
 
-export default withRouter(connect((_state: ReduxStoreState) => {
+export default withRouter<any>(connect((_state: ReduxStoreState) => {
     return {
 
     }

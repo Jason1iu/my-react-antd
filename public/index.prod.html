@@ -12,6 +12,11 @@
     <%= htmlWebpackPlugin.options.header%>
     <script type="text/javascript">
         window.contextPath = "<%=htmlWebpackPlugin.options.contextPath%>";
+        var refreshUrl = "<%= htmlWebpackPlugin.options.contextPath%>/blank";
+        function refreshQuery() {
+            fetch(refreshUrl);
+        }
+        setInterval('refreshQuery()', 5 * 60 * 1000); 
     </script>
 </head>
 
@@ -22,11 +27,11 @@
     <div style="display: none">
         <a id="idDetailA" target="_blank"></a>
         <form id="exportexcel" name="exportexcel" method="post" th:action="@{/api/exportexcel}" target="_blank">
-            <input type="hidden" name="title"/>
-            <input type="hidden" name="data"/>
+            <input type="hidden" name="title" />
+            <input type="hidden" name="data" />
+            <input type="hidden" name="jigouId" value="0" />
         </form>
     </div>
-
 </body>
 
 </html>

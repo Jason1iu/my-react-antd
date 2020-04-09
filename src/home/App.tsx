@@ -31,7 +31,7 @@ const App: FunctionComponent = () => {
     );
 }
 
-export default withRouter(connect((_state: any) => {
+export default withRouter<any>(connect((_state: any) => {
     return {
 
     };
