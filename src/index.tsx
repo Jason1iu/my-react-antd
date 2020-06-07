@@ -1,4 +1,5 @@
 import './index.less';
+import '../public/resources/orgiconfont/iconfont.less';
 import 'whatwg-fetch';
 
 import { ConfigProvider } from 'antd';
@@ -10,15 +11,18 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { styledTheme } from './global';
-import MainApp from './home';
-import { store } from './store/store';
+import MainApp from './home/App';
+import { initStore, registerModule } from './store/store';
 import { AppUtils } from './utils/AppUtils';
-// import request from './utils/request';
 
 const webpackPublicPath = AppUtils.getContextPath();
 const basename = webpackPublicPath;
 const supportsHistory = 'pushState' in window.history;
 
+registerModule(require('./home'));
+registerModule(require('./nomemu'));
+
+export const { store } = initStore();
 
 const App = () => {
     return (

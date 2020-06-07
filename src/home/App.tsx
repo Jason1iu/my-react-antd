@@ -1,38 +1,51 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Switch, Route } from 'react-router-dom';
+import { withRouter, Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
 
-import { AppContent, AppHeader, AppSider } from '../layout';
-import Header from './Header';
-import Sider from './Sider';
-import DataTable from '../edit';
+import { ReduxStoreState, StateKeys } from "../store/interface";
+import NoMenu from '../nomemu/NoMenu';
+import { Dispatch } from "redux";
+import { fetchLoginUser } from "./action";
+import { IHomeReduxState } from "./interface";
+import { Spin } from "antd";
 
-/**
- * 应用程序界面，统一加载用户、代码字典、任务
- * @param props 
- */
-const App: FunctionComponent = () => {
-
-    return (
-        <>
-            <AppHeader>
-                <Header />
-            </AppHeader>
-            <AppSider className="topBorder">
-                <Sider />
-            </AppSider>
-            <AppContent className="topBorder leftBorder">
-                <Switch>
-                    <Route path={`/react/data`} render={() => <DataTable />} />
-                    <Route render={() => <>建设中...</>} />
-                </Switch>
-            </AppContent>
-        </>
-    );
+interface HomeAppProps extends RouteComponentProps {
+    dispatch: Dispatch;
+    home: IHomeReduxState;
 }
 
-export default withRouter<any>(connect((_state: any) => {
-    return {
+class HomeApp extends React.Component<HomeAppProps, any> {
 
+    componentDidMount() {
+        this.props.dispatch(fetchLoginUser({}));
+    }
+
+    render() {
+        if (this.props.home.fetchingUser) {
+            return (
+                <div style={{ textAlign: "center" }} >
+                    <Spin tip="加载中..." />
+                </div>
+            );
+        }
+
+        return (
+            <>
+                <Switch>
+                    {/* <Route path={`/react/hasmenu`} render={() => <HasMemu />} /> */}
+                    <Route path={`/react/nomenu`} render={() => <NoMenu />} />
+                    {/* <Route render={() => <>建设中...</>} /> */}
+                    <Redirect to={`/react/nomenu`} />
+                </Switch>
+            </>
+        )
     };
-})(App));
+}
+
+export default withRouter(connect((state: ReduxStoreState) => {
+    return {
+        home: state.home,
+        nomenu: state.nomenu,
+        system: state[StateKeys.system],
+    };
+})(HomeApp));

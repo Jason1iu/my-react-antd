@@ -1,22 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
 import { AppTitleSpan } from '../layout';
-import { ReduxStoreState } from '../store/interface';
+import { ReduxStoreState, StateKeys } from '../store/interface';
+import { IHomeReduxState } from "./interface";
 
-class Header extends React.Component<any, any>{
+interface IHeaderProps {
+    home: IHomeReduxState;
+}
+
+class Header extends React.Component<IHeaderProps> {
     render() {
         return (
             <div className="marginLeftAndRight">
                 <AppTitleSpan>React+Antd各项功能管理界面</AppTitleSpan>
+                <div className="spacer">&nbsp;</div>
+                <div>您好：{this.props.home.loginUser?.username}</div>
             </div>
         );
     }
 }
 
-export default withRouter<any>(connect((_state: ReduxStoreState) => {
+export default connect((state: ReduxStoreState) => {
     return {
-
+        home: state[StateKeys.home],
     }
-})(Header));
+})(Header);

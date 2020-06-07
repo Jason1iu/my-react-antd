@@ -1,16 +1,17 @@
 import { StateKeys } from '../store/interface';
-import { injectReducer, store } from '../store/store';
-import App from './App';
-import { HomeReduxState } from './interface';
+import { IHomeReduxState, ITreeNode, ILoginUser } from './interface';
+
+const getDefaultRootNode: ITreeNode = { id: "-1", text: '投资集团公司', leaf: false, children: [] };
+const getDefaultLoginUser: ILoginUser = { id: 0, companyId: '-1', companyFullName: '投资集团公司', username: '未登录', userId: 0, authorities: [''] } as ILoginUser;
 
 export const stateKey = StateKeys.home;
 
-export const initialState: HomeReduxState = {
+export const initState: IHomeReduxState = {
     fetchingUser: true,
-    loginUser: undefined,
+    loginUser: getDefaultLoginUser,
     loginUsers: [],
+    ssoTreeData: [getDefaultRootNode],
+    ssoSelectedKeys: [],
+    ssoExpandedKeys: [],
+    ssoSelectedNode: getDefaultRootNode,
 };
-
-injectReducer(store, { stateKey, initialState });
-
-export default App;

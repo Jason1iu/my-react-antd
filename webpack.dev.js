@@ -44,7 +44,12 @@ module.exports = merge(common, {
                 target: 'http://localhost:3000/', // 使用 json-server作为mock-server
                 pathRewrite: { '^/api': '/' },
                 changeOrigin: true,
-            }
+            },
+            // '/api': {
+            //     target: ' https://www.easy-mock.com/mock/5ecbc12b72d5a41c9b506b77/react-antd-mock', // 使用 easy-mock作为mock-server
+            //     secure: false,
+            //     changeOrigin: true,
+            // },
             /*'/api': {
                 target: 'http://localhost:8080',
                 secure: false,

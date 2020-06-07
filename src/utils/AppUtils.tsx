@@ -5,7 +5,7 @@ import { match } from 'react-router';
 import { isNullOrUndefined } from 'util';
 
 import { defaultPageSize, FlowStatus } from '../global';
-import { LoginUser } from '../home/interface';
+import { ILoginUser } from '../home/interface';
 
 /**
  * 程序中所用到的公共方法工具类
@@ -16,13 +16,16 @@ export class AppUtils {
      * 设置路径
      */
     public static getContextPath() {
-        if (undefined !== typeof (window as any).contextPath)
-            return (window as any).contextPath;
-
-        const o: any = document.querySelector("meta[name='contextPath']");
         let url = '';
-        if (o && o.content)
-            url = o.content;
+        if (undefined !== typeof (window as any).contextPath) {
+            url = (window as any).contextPath;
+        }
+        else {
+            const o: any = document.querySelector("meta[name='contextPath']");
+            if (o && o.content) {
+                url = o.content;
+            }
+        }
         if (url.length && url.charAt(url.length - 1) == '/') {
             url = url.substr(0, url.length - 1);
         }
@@ -32,7 +35,7 @@ export class AppUtils {
     /**
      * 是否管理员
      */
-    public static isAdmin(curUser: LoginUser): boolean {
+    public static isAdmin(curUser: ILoginUser): boolean {
         if (isNullOrUndefined(curUser) != null) {
             if (curUser.admin) {
                 return true;
@@ -44,7 +47,7 @@ export class AppUtils {
     /**
      * 是否顶级管理员
      */
-    public static isTopAdmin(curUser: LoginUser): boolean {
+    public static isTopAdmin(curUser: ILoginUser): boolean {
         if (AppUtils.isAdmin(curUser)) {
             const authorities: string[] = curUser.authorities || [];
             return authorities.includes("ROLE_TOPUSER");
@@ -271,6 +274,18 @@ export class AppUtils {
             return false;
         }
         return status === FlowStatus.Nigao || status === FlowStatus.Shenpiweitongguo || status === FlowStatus.Zhongzhishenpi;
+    }
+
+    /**
+     * split默认宽度
+     */
+    public static getSplitDefaultSize = () => {
+        let defaultSize = 210;
+        let splitPos = localStorage.getItem('splitPos');
+        if (!isNullOrUndefined(splitPos)) {
+            defaultSize = parseInt(splitPos, 10);
+        }
+        return defaultSize;
     }
 
 }

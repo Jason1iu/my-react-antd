@@ -22,7 +22,7 @@ export const apptree_collapsed_key = "__apptree_collapsed";
 /**
  * 设置每页默认显示100条记录
  */
-export const defaultPageSize = 100;
+export const defaultPageSize = 50;
 
 /**
  * 审批状态常量:-1-拟稿,0-审批中,1-审批通过,2-未通过,3-终止审批,4-申请修改,

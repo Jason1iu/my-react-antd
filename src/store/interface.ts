@@ -1,5 +1,7 @@
-import { HomeReduxState } from '../home/interface';
+import { IHomeReduxState } from '../home/interface';
 import { EditReduxState } from '../edit/interface';
+import { NoMenuReduxState } from "../nomemu/interface";
+import { ISystemReduxState } from "../system/interface";
 
 /**
  * 所有的stateKey
@@ -7,6 +9,10 @@ import { EditReduxState } from '../edit/interface';
 export enum StateKeys {
     /** home模块 */
     home = "home",
+    /** 有左侧导航模块 */
+    hasmenu = "hasmenu",
+    /** 无左侧导航模块 */
+    nomenu = "nomenu",
     /** work模块 */
     work = "work",
     /** edit模块 */
@@ -22,8 +28,10 @@ export enum StateKeys {
  */
 export interface ReduxStoreState {
     /** 初始模块 */
-    [StateKeys.home]: HomeReduxState,
-    [StateKeys.edit]: EditReduxState,
+    system: ISystemReduxState,
+    home: IHomeReduxState,
+    nomenu: NoMenuReduxState,
+    edit: EditReduxState,
 }
 
 /**
